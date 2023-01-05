@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import compression from 'compression';
 import { errorHandler, notFound } from './errors/errors-handler';
+import authRouter from './routes/auth';
 
 dotenv.config();
 
@@ -28,7 +29,8 @@ class Server {
         this.app.use(express.urlencoded({ extended: false }));
 
 
-        // Set up other server configuration here
+        // routes
+        this.app.use('/api/v1', authRouter);
 
 
         // set up 404 error handling here

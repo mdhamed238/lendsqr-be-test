@@ -11,7 +11,7 @@ export const seed_data =
         phone: "1234567890",
         balance: 1000,
         is_admin: false,
-        wallet_id: 345678,
+        wallet_id: "345678",
         created_at: new Date(),
         updated_at: new Date(),
     },
@@ -24,7 +24,7 @@ export const seed_data =
         phone: "1234567891",
         balance: 2000,
         is_admin: false,
-        wallet_id: 345679,
+        wallet_id: "345679",
         created_at: new Date(),
         updated_at: new Date(),
     }]

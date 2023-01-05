@@ -146,4 +146,19 @@ Verify that the data was added to the table by running the following command:
 select * from users;
 ```
 
+---
 
+### To fix roll back issues after editing the migration file
+1. Get the file name of the migration file you want to rollback
+```bash
+ls -l migrations
+```
+2. Recreate the file in the migrations folder with the same name
+3. Run the following command to rollback the migration
+```bash
+knex migrate:rollback
+```
+4. Run the following command to run the migration again
+```bash
+knex migrate:latest
+```
