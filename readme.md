@@ -1,3 +1,15 @@
+# Project Name: Demo Credit
+
+## Description
+This is a demo credit app that allows users to borrow money from a money lender. The money lender can also lend money to users.
+
+
+#### Entity Relationship Diagram (ERD)
+![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tdb995mgt4jx5cv9x62f.png)
+
+
+
+
 ##### Create your database
 ```bash
 mysql -u root -p
@@ -8,9 +20,19 @@ CREATE DATABASE lendsqr;
 USE lendsqr;
 ```
 
-#### ERD for the database
-![ERD](
-    )
+#### Projec setup
+```bash
+yarn init -y && tsc --init
+```
+
+#### Dependencies used
+```bash
+yarn add express dotenv mysql2 knex cors compression helmet morgan express-rate-limit
+```
+
+#### How to run the project
+> Make sure you have a .env file in the root directory of the project. Check the .env.example file for the required environment variables
+
 
 
 ---
@@ -161,4 +183,173 @@ knex migrate:rollback
 4. Run the following command to run the migration again
 ```bash
 knex migrate:latest
+```
+
+---
+
+#### My API Endpoints
+
+##### Register new user
+POST ⇒ {{url}}api/v1/auth/signup
+**Example requestbody:**
+```js
+{
+    "first_name": "John",
+    "last_name": "Doe",
+    "is_admin": true,
+    "balance": 0,
+    "wallet_id": 1,
+    "phone": "08012345678",
+    "email": "a@b.com",
+}
+```
+**Example response body**
+```js
+{
+    "success": true,
+    "data": "User created successfully"
+}
+```
+
+<br>
+
+
+##### Login user
+POST ⇒ {{URL}}api/v1/auth/login
+**Example requestbody:**
+```js
+{
+    "email": "yomi@b.com",
+    "password": "admin1234"
+}
+
+```
+
+**Example response body**
+```js
+{
+   {
+    "success": true,
+    "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJ5b21pQGIuY29tIiwiaXNfYWRtaW4iOjAsImlhdCI6MTY3MjkxMzc1MH0.Dnj_sWZpOZxYk50xuEWYGFGrHKyAcPzmnPTqHCD_3Q4"
+}
+```
+<br>
+
+##### Fund your wallet
+POST ⇒ {{URL}}api/v1/fund-wallet
+Authorization: Bearer {{token}}
+**Example requestbody:**
+```js
+{
+    "amount":7000
+}
+```
+
+**Example response body**
+```js
+{
+    "success": true,
+    "data": "Wallet funded successfully"
+}
+```
+
+<br>
+
+##### Transfer funds to another wallet
+POST ⇒ {{URL}}api/v1/transfer-funds
+Authorization: Bearer {{token}}
+**Example requestbody:**
+```js
+{
+    "amount": "70000",
+    "wallet_id": "jyv2jtqe0"
+}
+```
+
+**Example response body**
+```js
+{
+    "success": true,
+    "data": "Funds withdrawn successfully from your wallet"
+}
+```
+
+<br>
+
+##### View balance in your wallet
+GET ⇒ {{URL}}api/v1/view-balance
+Authorization: Bearer {{token}}
+
+**Example response body**
+```js
+{
+    "success": true,
+    "data": "Your balance is 26638.92"
+}
+```
+
+<br>
+
+##### View transaction history
+GET ⇒ {{URL}}api/v1/view-transaction-history
+Authorization: Bearer {{token}}
+
+**Example response body**
+```js
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "amount": 7000,
+            "wallet_id": "jyv2jtqe0",
+            "transaction_type": "credit",
+            "created_at": "2021-10-04T13:57:05.000Z",
+            "updated_at": "2021-10-04T13:57:05.000Z"
+        },
+        {
+            "id": 2,
+            "amount": 70000,
+            "wallet_id": "jyv2jtqe0",
+            "transaction_type": "debit",
+            "created_at": "2021-10-04T14:00:05.000Z",
+            "updated_at": "2021-10-04T14:00:05.000Z"
+        }
+    ]
+}
+```
+
+<br>
+
+##### View transaction details
+GET ⇒ {{URL}}api/v1/view-transaction-details/:transaction_id  
+Authorization: Bearer {{token}}
+
+**Example response body**
+```js
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "amount": 7000,
+        "wallet_id": "jyv2jtqe0",
+        "transaction_type": "credit",
+        "created_at": "2021-10-04T13:57:05.000Z",
+        "updated_at": "2021-10-04T13:57:05.000Z"
+    }
+}
+```
+
+<br>
+
+##### View total amount of all transactions
+GET ⇒ {{URL}}api/v1/total-amount
+Authorization: Bearer {{token}}
+
+**Example response body**
+```js
+{
+    "success": true,
+    "data": "Total amount of all transactions is 49497.030000000006"
+}
 ```

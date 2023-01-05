@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 
 // listen to server and handle server errors
 app.listen(port, () => {
-    logger.info(`Server running on port ${port}`);
+    console.log(`Server running 🚀🚀🚀 on port http://localhost${port}`);
 }).on('error', (error) => {
     logger.error('Server error', error);
 });
