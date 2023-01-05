@@ -41,6 +41,27 @@ class Query{
         return await this.knex('users').where('id', id).del();
         
     }
+
+    // userByWalletId
+    public async userByWalletId(wallet_id: string): Promise<any> {
+        return await this.knex('users').where('wallet_id', wallet_id);
+    }
+
+    //create transaction
+    public async transactions(transaction: any):
+        Promise<any> {
+        return await this.knex('transactions').insert(transaction);
+    }
+
+    // get all transactions transactionsByUserId
+    public async allTransactions(user_id: number): Promise<any[]> {
+        return await this.knex('transactions');
+    }
+
+    // get transaction by id
+    public async transactionById(transaction_id: number): Promise<any> {
+        return await this.knex('transactions').where('id', transaction_id);
+    }
 }
 
 let query = new Query(knex);

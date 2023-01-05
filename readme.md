@@ -154,7 +154,7 @@ select * from users;
 ls -l migrations
 ```
 2. Recreate the file in the migrations folder with the same name
-3. Run the following command to rollback the migration
+3. Run the following command to rollback the migration. You can delete the tables first
 ```bash
 knex migrate:rollback
 ```
