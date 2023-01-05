@@ -2,11 +2,10 @@
 import { Request, Response, NextFunction } from 'express';
 import query from '../db/queries';
 import Password from '../utils/password.hash';
-import Token from '../utils/jwt';
+import jwt_token from '../utils/jwt';
 import { User } from '../interfaces/user.interface';
 import responseHelper from '../utils/api.reponse';
 import WalletId from '../utils/generate_walletid';
-import logger from '../log/logger';
 
 
 // register a new user with validation checks
@@ -44,7 +43,6 @@ export async function register(req: Request, res: Response, next: NextFunction):
         await query.addUser(user);
         return responseHelper.success(res, "User created successfully");
     } catch (error) {
-        console.log(error);
         next(error);
     }
 }
@@ -63,9 +61,14 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
             const hash = new Password(10);
             const isMatch = await hash.compare(password, user[0].password);
             if (isMatch) {
-                let secre_key = process.env.SECRET_KEY || 'secret;key';
-                const token = new Token(secre_key);
-                const accessToken = await token.generate(user[0]);
+                const token = jwt_token;
+
+                let payload = {
+                    id: user[0].id,
+                    email: user[0].email,
+                    is_admin: user[0].is_admin,
+                }
+                const accessToken = await token.generate(payload);
                 return responseHelper.success(res, accessToken);
             }
             return responseHelper.badRequest(res, 'Invalid credentials');

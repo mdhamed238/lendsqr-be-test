@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import compression from 'compression';
 import { errorHandler, notFound } from './errors/errors-handler';
 import authRouter from './routes/auth';
+import userRouter from './routes/user';
 
 dotenv.config();
 
@@ -31,6 +32,8 @@ class Server {
 
         // routes
         this.app.use('/api/v1', authRouter);
+        this.app.use('/api/v1', userRouter);
+
 
 
         // set up 404 error handling here

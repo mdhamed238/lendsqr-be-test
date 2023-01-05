@@ -16,15 +16,11 @@ class Token {
         const payload = jwt.verify(token, this.secret);
         return payload;
     }
-
-    public getFromHeaders(headers: any): string | null {
-        const authorization = headers.authorization;
-        if (!authorization) {
-            return null;
-        }
-        const [, token] = authorization.split(' ');
-        return token;
-    }
 }
 
-export default Token;
+let secret_key = process.env.JWT_SECRET || "secret;key"
+let jwt_token = new Token(secret_key);
+export default jwt_token;
+
+
+
