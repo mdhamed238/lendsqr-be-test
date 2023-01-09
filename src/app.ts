@@ -31,6 +31,10 @@ class Server {
 
 
         // routes
+        // set home route
+        this.app.get('/api/v1', (req, res) => {
+            res.status(200).json({ message: 'Welcome to Lendsqr API' });
+        });
         this.app.use('/api/v1', authRouter);
         this.app.use('/api/v1', userRouter);
 

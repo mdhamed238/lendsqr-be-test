@@ -41,7 +41,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
     };
     try {
         await query.addUser(user);
-        return responseHelper.success(res, "User created successfully");
+        return responseHelper.success(res, "User created successfully", 201);
     } catch (error) {
         next(error);
     }

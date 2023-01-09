@@ -6,6 +6,7 @@ class ResponseHelper {
         res.status(statusCode).json({
             success: true,
             data,
+            statusCode,
         });
     }
 

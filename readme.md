@@ -8,6 +8,12 @@ This is a demo credit app that allows users to borrow money from a money lender.
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/tdb995mgt4jx5cv9x62f.png)
 
 
+---
+
+##### Postman Documentation Link
+_[Postman Documentation](https://documenter.getpostman.com/view/15544476/2s8Z73xW1j)_
+
+---
 
 
 ##### Create your database

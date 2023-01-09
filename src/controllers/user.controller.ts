@@ -48,7 +48,7 @@ export async function fundWallet(req: Request, res: Response, next: NextFunction
 
 
 
-            return responseHelper.success(res, `Wallet funded successfully`);
+            return responseHelper.success(res, `Wallet funded successfully`,200);
         }
     } catch (error) {
         next(error);
