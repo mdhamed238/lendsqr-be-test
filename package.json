@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
-    "build": "yarn install--only=dev && tsc",
+    "build": "yarn && tsc",
     "start": "node dist/index.js",
     "test-dev": "cross-env NODE_ENV=test nodemon --watch . --ext ts --exec \"mocha -r ts-node/register test/**/*.test.ts\"  --timeout 10000",
     "eslint:fix": "eslint --fix"
