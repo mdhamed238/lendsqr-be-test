@@ -2,7 +2,6 @@ import express from "express";
 import { login, register } from "../controllers/auth.controller";
 
 
-//use oop to create a class for the routes
 class Routes {
     public router: express.Router;
 
