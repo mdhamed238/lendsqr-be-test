@@ -26,18 +26,21 @@ CREATE DATABASE lendsqr;
 USE lendsqr;
 ```
 
-#### Projec setup
+---
+
+#### Project setup
 ```bash
 yarn init -y && tsc --init
 ```
 
 #### Dependencies used
 ```bash
-yarn add express dotenv mysql2 knex cors compression helmet morgan express-rate-limit
+yarn add express dotenv mysql2 knex cors compression helmet jsonwebtoken bcryptjs chai pino pino-pretty mocha
+
 ```
 
 #### How to run the project
-> Make sure you have a .env file in the root directory of the project. Check the .env.example file for the required environment variables
+> Make sure you have a <mark>.env</mark> file in the root directory of the project. Check the <mark>.env.example</mark> file for the required environment variables
 
 
 
